@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy();
+?>
 <!--
 RF1 Mostramos la pantalla según estilo (Opciones, Información, Jugada)
 RF1 Generamos una clave y la guardamos en sesión

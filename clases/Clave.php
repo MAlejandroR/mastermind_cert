@@ -19,6 +19,7 @@ class Clave
 
     private static function genera_clave()
     {
+        self::$clave=[];
         $colores = self::COLORES;
         $posiciones = array_rand($colores, 4);
         foreach ($posiciones as $posicion)

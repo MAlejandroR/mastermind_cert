@@ -1,7 +1,23 @@
 <?php
-require "controlador.php";
+$carga = fn($clase) => require("./clases/$clase.php");
+spl_autoload_register($carga);
 
+session_start();
 
+$mostrar_ocultar_clave = "Mostrar Clave";
+
+$clave = Clave::obtener_clave();
+
+$jugadas = $_SESSION['jugadas'];
+$win = $_GET['win'] ??"";
+$intento = sizeof ($_SESSION['jugadas']);
+if ($win)
+    $msj="<h1> FELICIDADES HAS ACERTADO EN $intento jugada";
+else
+    $msj="<h1> HAS AGOTADO TUS JUGADAS!!!!!";
+$html_clave= Clave::get_clave();
+$informacion = "<h1> Clave actual  es $html_clave";
+$informacion .= Jugada::obtener_historico_jugadas();
 
 ?>
 <!--
@@ -31,13 +47,6 @@ RF7.2 Mostrar Jugadas anteriores ordenadas
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="./css/estilo.css" type="text/css">
-    <script>
-        function cambia_color(numero) {
-            color = document.getElementById("combinacion" + numero).value;
-            elemento = document.getElementById("combinacion" + numero);
-            elemento.className = color;
-        }
-    </script>
 </head>
 <body>
 <div class="contenedorJugar">
